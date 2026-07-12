@@ -19,6 +19,7 @@ services:
     depends_on:
     - catalogue
   user:
+    user:
     build: ./user
     image: jagan0816/user:v1
     container_name: user
@@ -29,9 +30,10 @@ services:
     depends_on:
       - redis
       - mongodb
-    redis:
-      image: redis:7
-      container_name: redis  
+
+  redis:
+    image: redis:7
+    container_name: redis  
 
 networks:
   default: #this means all the services in this file use this network
