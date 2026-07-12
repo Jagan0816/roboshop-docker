@@ -19,7 +19,6 @@ services:
     depends_on:
     - catalogue
   user:
-    user:
     build: ./user
     image: jagan0816/user:v1
     container_name: user
