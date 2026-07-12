@@ -19,6 +19,7 @@ services:
     depends_on:
     - catalogue
     - user
+    - cart
   user:
     build: ./user
     image: jagan0816/user:v1
