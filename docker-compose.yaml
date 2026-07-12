@@ -50,11 +50,12 @@ services:
     image: jagan0816/mysql:v1
     build: ./mysql
     container_name: mysql
+    command: --mysql-native-password=ON --innodb-lock_wait_timeout=120
     environment:
-      MYSQL_ROOT_PASSWORD: "Roboshop@1"  
+      MYSQL_ROOT_PASSWORD: "Roboshop@1"
 
 networks:
   default: #this means all the services in this file use this network
     name: roboshop
     driver: bridge
-    external: true #if true it should be created manually , if false docker creates this network    
+    external: false #if true it should be created manually , if false docker creates this network    
