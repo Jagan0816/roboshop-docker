@@ -27,8 +27,8 @@ services:
       REDIS_URL: "redis://redis:6379"
       MONGO_URL: "mongodb://mongodb:27017/users"
     depends_on:
-    - redis
-    - mongodb
+      - redis
+      - mongodb
     redis:
       image: redis:7
       container_name: redis  
