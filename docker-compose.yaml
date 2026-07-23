@@ -4,6 +4,8 @@ services:
     build: ./mongodb
     image: jagan0816/mongodb:v1 #docker build -t joindevops/mongodb:v1
     container_name: mongodb #docker run -d --network roboshop jagan0816/mongodb:v1
+    volumes:
+      -mongodb:/data/db
   catalogue:
     build: ./catalogue
     image: jagan0816/catalogue:v1
@@ -74,6 +76,8 @@ services:
   redis:
     image: redis:7
     container_name: redis  
+    volumes:
+      - redis:/data
   mysql:
     image: jagan0816/mysql:v1
     build: ./mysql
@@ -81,14 +85,24 @@ services:
     command: --mysql-native-password=ON --innodb-lock_wait_timeout=120
     environment:
       MYSQL_ROOT_PASSWORD: "Roboshop@1"
+    volumes:
+    - mysql:/var/lib/mysql 
+
   rabbitmq:
     image: rabbitmq:3
     container_name: rabbitmq
     environment:
       RABBITMQ_DEFAULT_USER: roboshop
       RABBITMQ_DEFAULT_PASS: roboshop123
+    volumes:
+    - rabbitmq:/var/lib/rabbitmq  
 networks:
   default: #this means all the services in this file use this network
     name: roboshop
     driver: bridge
-    external: false #if true it should be created manually , if false docker creates this network    
+    external: false #if true it should be created manually , if false docker creates this network   
+volumes:
+  mongodb: #docker volume create mongodb
+  redis:    #docker volume create redis
+  mysql:   #docker volume create mysql
+  rabbitmq: #docker volume create rabbitmq
